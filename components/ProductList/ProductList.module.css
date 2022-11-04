@@ -1,0 +1,19 @@
+.listContainer {
+	display: grid;
+	gap: 10px;
+
+	border-radius: 20px;
+	
+	margin: 2vh 2vw 0px 2vw;
+	padding: 2vw;
+	
+	background-color: rgb(72, 72, 72);
+}
+
+
+.loading {
+	display: block;
+	text-align: center;
+	font-size: 30px;
+	font-weight: bold;
+}

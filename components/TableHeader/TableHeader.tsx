@@ -3,7 +3,7 @@ import useInput from "../../hooks/useInput";
 import { TableHeaderModel } from './TableHeader.model';
 import styles from "./TableHeader.module.css";
 
-export const TableHeader = ({toggleCreateProduct}: TableHeaderModel) => {
+export const TableHeader = ({toggleCreateProduct, selectedSort, setSelectedSort}: TableHeaderModel) => {
   const query = useInput("");
 
   return (
@@ -18,11 +18,11 @@ export const TableHeader = ({toggleCreateProduct}: TableHeaderModel) => {
         />
       </div>
       <div className={styles.functionalContainer} >
-        <select className={styles.sortSelect}>
-          <option disabled> Sorting </option>
-          <option> By id </option>
-          <option> By title </option>
-          <option> By date </option>
+        <select value={selectedSort} onChange={event => setSelectedSort(event.target.value)} className={styles.sortSelect}>
+          <option value="" disabled> Sorting </option>
+          <option value="id" > By id </option>
+          <option value="title"> By title </option>
+          <option value="date"> By date </option>
         </select>
         <button onClick={() => toggleCreateProduct(p => p = true)} className={styles.createButton} > Create </button>
       </div>

@@ -1,8 +1,8 @@
 export interface ProductModel {
-	title: String;
-	weight: String;
-	isExist: Boolean;
-	Date: Date;
-	cutomer: String;
+	title: string;
+	weight: string;
+	isExist: boolean;
+	Date: string;
+	customer: string;
 	id: number;
 }

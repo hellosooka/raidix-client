@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "hooks/useFetch.js", "hooks/useFetch.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "hooks/useFetch.js", "hooks/useFetch.js", "hooks/useInput.js", "hooks/useInput.js"],
   "exclude": ["node_modules"]
 }
