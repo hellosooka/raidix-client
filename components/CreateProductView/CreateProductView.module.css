@@ -1,0 +1,65 @@
+.closeButtonContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.closeButton {
+  font-size: 20px;
+  background-color: grey;
+
+  border: none;
+  border-radius: 5px;
+
+  transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.closeButton:focus {
+  background-color: rgb(80, 80, 80);
+}
+
+.titleContainer {
+  padding: 0px 0px 20px 0px;
+}
+
+.titleText {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+@media (max-height: 640px) {
+  .titleText {
+    font-size: 30px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.input {
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+.submitButton {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 15px;
+
+  font-size: 22px;
+  font-weight: bold;
+  align-self: center;
+
+  transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: gray;
+}
+
+.submitButton:focus {
+  padding: 10px 50px;
+  background-color: rgb(71, 71, 71);
+}
