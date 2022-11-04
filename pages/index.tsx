@@ -1,4 +1,4 @@
-import Head from "next/head";
+import type { NextPage } from 'next'
 import { TableHeader } from "../components/TableHeader/TableHeader";
 import styles from "../styles/Home.module.css";
 import CreateProductView from "../components/CreateProductView/CreateProductView";
@@ -9,7 +9,7 @@ import { useFetch } from '../hooks/useFetch'
 export default function Home() {
 
   const [isProductView, setIsProductView] = useState(false)
-  const [products, setProducts] = useState({})
+  const [products, setProducts] = useState('')
 
   const [fetchPosts, isPostLoading, postError] = useFetch(async () => {
     const response = await ProductService.getProducts()
@@ -27,10 +27,8 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title> My interview app </title>
-      </Head>
-      {products}
+      
+      <p>{products}</p>
       { isProductView && <CreateProductView toggleCreateProduct={setIsProductView} />}
       <div className={styles.container}>
         <main className={styles.main}>
