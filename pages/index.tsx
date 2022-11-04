@@ -21,7 +21,6 @@ export default function Home() {
   useEffect(() => {
     if (typeof fetchPosts === 'function') {
       fetchPosts()
-      console.log(products)
     }
   }, [])
   
@@ -31,6 +30,7 @@ export default function Home() {
       <Head>
         <title> My interview app </title>
       </Head>
+      {products}
       { isProductView && <CreateProductView toggleCreateProduct={setIsProductView} />}
       <div className={styles.container}>
         <main className={styles.main}>
