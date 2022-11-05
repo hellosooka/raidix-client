@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ProductService from "../../API/ProductService";
 import { useFetch } from "../../hooks/useFetch";
 import useInput from "../../hooks/useInput";
@@ -16,32 +16,34 @@ export default function CreateProductView({
   const date = useInput(moment().format("YYYY-MM-DD"));
   const cusotmer = useInput("");
 
-  const [isTitle, setIsTitle] = useState(true);
-  const [isWeight, setIsWeight] = useState(true);
-  const [isExist, setIsExist] = useState(true);
-  const [isCustomer, setIsCustomer] = useState(true);
+  const [isTitle, setIsTitle] = useState(false);
+  const [isWeight, setIsWeight] = useState(false);
+  const [isExist, setIsExist] = useState(false);
+  const [isCustomer, setIsCustomer] = useState(false);
+
 
   const createProduct = () => {
-    setIsTitle(title.value.trim() != "");
-    setIsWeight(weight.value.trim() != "");
-    setIsExist(exist.value.trim() != "");
-    setIsCustomer(cusotmer.value != "");
-    if (isTitle && isWeight && isExist && isCustomer) {
-      if (typeof fetching == "function") {
-        fetching();
-        toggleCreateProduct((p) => (p = false));
+    setIsTitle(title.value.trim() != '');
+    setIsWeight(weight.value.trim() != '');
+    setIsExist(exist.value.trim().toString() != '');
+    setIsCustomer(cusotmer.value.trim() != '');
+    if (title.value.trim() != '' && weight.value.trim() != '' && exist.value.trim().toString() != '' && cusotmer.value.trim() != '') {
+      toggleCreateProduct(p => p = false)
+      if (typeof fetching == 'function') {
+        fetching()
       }
-    }
+    } 
   };
 
-  const [fetching, isLoading, error] = useFetch(() => {
-    const response = ProductService.createProduct({
+  const [fetching, isLoading, error] = useFetch( async () => {
+    const response = await ProductService.createProduct({
       title: `${title.value}`,
       weight: `${weight.value}`,
       isExist: `${exist.value}` == "true",
       date: `${date.value}`,
       customer: `${cusotmer.value}`,
     });
+    
   });
 
   return (
