@@ -21,21 +21,25 @@ export default function CreateProductView({
   const [isExist, setIsExist] = useState(false);
   const [isCustomer, setIsCustomer] = useState(false);
 
-
   const createProduct = () => {
-    setIsTitle(title.value.trim() != '');
-    setIsWeight(weight.value.trim() != '');
-    setIsExist(exist.value.trim().toString() != '');
-    setIsCustomer(cusotmer.value.trim() != '');
-    if (title.value.trim() != '' && weight.value.trim() != '' && exist.value.trim().toString() != '' && cusotmer.value.trim() != '') {
-      toggleCreateProduct(p => p = false)
-      if (typeof fetching == 'function') {
-        fetching()
+    setIsTitle(title.value.trim() != "");
+    setIsWeight(weight.value.trim() != "");
+    setIsExist(exist.value.trim().toString() != "");
+    setIsCustomer(cusotmer.value.trim() != "");
+    if (
+      title.value.trim() != "" &&
+      weight.value.trim() != "" &&
+      exist.value.trim().toString() != "" &&
+      cusotmer.value.trim() != ""
+    ) {
+      toggleCreateProduct((p) => (p = false));
+      if (typeof fetching == "function") {
+        fetching();
       }
-    } 
+    }
   };
 
-  const [fetching, isLoading, error] = useFetch( async () => {
+  const [fetching, isLoading, error] = useFetch(async () => {
     const response = await ProductService.createProduct({
       title: `${title.value}`,
       weight: `${weight.value}`,
@@ -43,7 +47,6 @@ export default function CreateProductView({
       date: `${date.value}`,
       customer: `${cusotmer.value}`,
     });
-    
   });
 
   return (
