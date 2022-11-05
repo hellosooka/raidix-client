@@ -9,9 +9,8 @@ import useInput from '../hooks/useInput';
 export default function Home() {
 
   const [isProductView, setIsProductView] = useState(false)
-  
   const [selectedSort, setSelectedSort] = useState('')
-  
+  const searchQuery = useInput('')
   
 
   return (
@@ -20,8 +19,8 @@ export default function Home() {
       <div className={styles.container}>
         <main className={styles.main}>
           <span className={styles.title}> Table </span>
-          <TableHeader toggleCreateProduct={setIsProductView} selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
-          <ProductList selectedSort={selectedSort} />
+          <TableHeader searchQuery={searchQuery}  toggleCreateProduct={setIsProductView} selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
+          <ProductList searchQuery={searchQuery} isProductView={isProductView} selectedSort={selectedSort} />
         </main>
       </div>
     </>

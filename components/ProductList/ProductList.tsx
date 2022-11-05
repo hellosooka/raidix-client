@@ -5,10 +5,11 @@ import Product from '../Product/Product'
 import { ProductModel } from '../Product/Product.model'
 import { ProductListModel } from './ProductList.model'
 import styles from './ProductList.module.css'
+const Moment = require('moment')
 
-export default function ProductList({selectedSort}: ProductListModel) {
+export default function ProductList({selectedSort, isProductView, searchQuery}: ProductListModel) {
 
-	const [isProductView, setIsProductView] = useState(false)
+	
   const [products, setProducts] = useState<ProductModel[]>([])
   
   const sortedProducts = useMemo(() => {
@@ -16,22 +17,38 @@ export default function ProductList({selectedSort}: ProductListModel) {
       return [...products].sort((a,b) => {
         return a.title.localeCompare(b.title)
       })
-    } 
-
+    } else if (selectedSort == 'date') {
+      return [...products].sort((a,b) => new Moment(a.date).format('YYYYMMDD') - new Moment(b.date).format('YYYYMMDD'))
+    }
     return products
   }, [products, selectedSort])
+
+  const sortedAndSearchedProducts = useMemo(() => {
+    return [...sortedProducts].filter(product => product.title.includes(searchQuery.value) )
+  }, [products, searchQuery, selectedSort])
 
   const [fetchProducts, isProductsLoading, productsError] = useFetch(async () => {
     const response = await ProductService.getProducts()
     setProducts(response.data.data)
   })
+
+  const deleteProductById = (id: number) => {
+    setProducts(sortedProducts.filter(product => product.id != id))
+  }
+  
   
 
   useEffect(() => {
     if (typeof fetchProducts === 'function') {
-      fetchProducts()
+      if (isProductView != true) {
+        setTimeout(() => {
+          fetchProducts()
+        }, 1000)
+      } else {
+        fetchProducts()
+      }
     }
-  }, [])
+  }, [isProductView])
 
 	return (
 		<div className={styles.listContainer} >
@@ -39,11 +56,12 @@ export default function ProductList({selectedSort}: ProductListModel) {
 			{isProductsLoading 
           ?
           <span className={styles.loading} >
-            Loading products...
+            Updating products...
           </span>
           :
-          sortedProducts.map(product => <Product key={product.id} {...product} /> )
+          sortedAndSearchedProducts.map(product => <Product key={product.id} {...product} deleteProductById={deleteProductById} /> )
         }
+        {(sortedAndSearchedProducts.length == 0 && !isProductsLoading ) && <span> Empty </span> }
 		</div>
 	)
 }

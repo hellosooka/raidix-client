@@ -1,7 +1,7 @@
 export interface CreateProductDto {
-	title: String;
-	weight: String;
-	isExist: Boolean;
-	date: Date;
-	customer: String;
+	title: string;
+	weight: string;
+	isExist: boolean;
+	date: string;
+	customer: string;
 }

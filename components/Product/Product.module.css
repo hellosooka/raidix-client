@@ -41,6 +41,17 @@
 	border: 1px solid rgb(228, 242, 255) ;
 }
 
+.editInput {
+	border: none;
+	border-radius: 5px;
+	padding: 2px;
+	font-size: 14px;
+}
+
+.done {
+	color: #2994ff;
+}
+
 @media (max-width: 750px) {
 	.productContainer {
 		row-gap: 10px;

@@ -1,5 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
+import ProductService from '../../API/ProductService';
+import { useFetch } from '../../hooks/useFetch';
 import useInput from "../../hooks/useInput";
 import ModalView from "../ModalView/ModalView";
 import { CreateProductViewModel } from './CreateProductView.model';
@@ -23,9 +25,25 @@ export default function CreateProductView({toggleCreateProduct}: CreateProductVi
     setIsExist(exist.value.trim() != "")
     setIsCustomer(cusotmer.value != "")
     if (isTitle && isWeight && isExist && isCustomer) {
-
+      if (typeof fetching == 'function') {
+        fetching()
+        toggleCreateProduct(p => p = false)
+      }
     }
   };
+
+  const [fetching, isLoading, error] = useFetch(() => {
+    const response = ProductService.createProduct({
+      title: `${title.value}`,
+      weight: `${weight.value}`,
+      isExist: `${exist.value}` == 'true',
+      date: `${date.value}`,
+      customer: `${cusotmer.value}`
+    })
+
+  })
+
+  
 
   return (
     <ModalView>

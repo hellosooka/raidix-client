@@ -14,11 +14,16 @@
 
 .searchInput {
   font-size: 30px;
+  background-color: rgb(74, 74, 74);
+
   border: none;
   border-radius: 35px;
+  
   padding: 15px;
+  
   width: 55%;
   min-width: 300px;
+  
   transition: 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -36,11 +41,13 @@
 }
 
 .sortSelect {
+  appearance: none;
   font-size: 22px;
   padding: 10px;
 
   border: none;
   border-radius: 18px;
+  background-color: grey;
 }
 
 .createButton {

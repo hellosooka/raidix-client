@@ -3,8 +3,8 @@ import useInput from "../../hooks/useInput";
 import { TableHeaderModel } from './TableHeader.model';
 import styles from "./TableHeader.module.css";
 
-export const TableHeader = ({toggleCreateProduct, selectedSort, setSelectedSort}: TableHeaderModel) => {
-  const query = useInput("");
+export const TableHeader = ({toggleCreateProduct, selectedSort, setSelectedSort, searchQuery}: TableHeaderModel) => {
+  
 
   return (
     <div className={styles.headerContainer} >
@@ -12,8 +12,8 @@ export const TableHeader = ({toggleCreateProduct, selectedSort, setSelectedSort}
         <input
           className={styles.searchInput}
           placeholder="Search..."
-          value={query.value}
-          onChange={query.onChange}
+          value={searchQuery.value}
+          onChange={searchQuery.onChange}
           type="text"
         />
       </div>
