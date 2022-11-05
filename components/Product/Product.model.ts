@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 export interface ProductModel {
 	title: string;
 	weight: string;
@@ -5,5 +7,6 @@ export interface ProductModel {
 	date: string;
 	customer: string;
 	id: number;
-	deleteProductById: (id:number) => void
+	deleteProductById: (id:number) => void;
+	createResponseView: (response: Promise<AxiosResponse<any, any>>) => void;
 }

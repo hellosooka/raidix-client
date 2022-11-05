@@ -3,8 +3,8 @@ import useInput from "../../hooks/useInput";
 import { TableHeaderModel } from './TableHeader.model';
 import styles from "./TableHeader.module.css";
 
-export const TableHeader = ({toggleCreateProduct, selectedSort, setSelectedSort, searchQuery}: TableHeaderModel) => {
-  
+export const TableHeader = ({ toggleCreateProduct, selectedSort, setSelectedSort, searchQuery }: TableHeaderModel) => {
+
 
   return (
     <div className={styles.headerContainer} >
@@ -27,6 +27,6 @@ export const TableHeader = ({toggleCreateProduct, selectedSort, setSelectedSort,
         <button onClick={() => toggleCreateProduct(p => p = true)} className={styles.createButton} > Create </button>
       </div>
     </div>
-  
+
   );
 };

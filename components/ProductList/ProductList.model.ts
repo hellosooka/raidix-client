@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface ProductListModel {
 	selectedSort: string
@@ -8,4 +8,5 @@ export interface ProductListModel {
     onChange: (event: any) => void;
     setValue: Dispatch<any>;
 	}
+	
 }
